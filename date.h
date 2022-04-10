@@ -8,7 +8,7 @@
 
 using namespace std;
 
-class Date {
+class Date { // класс Date
 public:
 
 	Date(int a, int b, int c);
@@ -25,10 +25,10 @@ private:
 	int day;
 };
 
-ostream& operator<<(ostream& out, const Date& d);
+ostream& operator<<(ostream& out, const Date& d); // вывод даты
 
-Date ParseDate(istream& in);
-
+Date ParseDate(istream& in); // парс даты
+// переопределение логических операторов для дат
 bool operator<(const Date& lhs, const Date& rhs);
 bool operator<=(const Date& lhs, const Date& rhs);
 bool operator>(const Date& lhs, const Date& rhs);
