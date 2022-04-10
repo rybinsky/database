@@ -5,7 +5,7 @@
 using namespace std;
 
 template <class It> 
-shared_ptr<Node> ParseComparison(It& current, It end) {
+shared_ptr<Node> ParseComparison(It& current, It end) { // создать звено сравнения
     if (current == end) {
         throw logic_error("Expected column name: date or event");
     }
@@ -66,7 +66,7 @@ shared_ptr<Node> ParseComparison(It& current, It end) {
 }
 
 template <class It>
-shared_ptr<Node> ParseExpression(It& current, It end, unsigned precedence) {
+shared_ptr<Node> ParseExpression(It& current, It end, unsigned precedence) { парсинг логического выражения
     if (current == end) {
         return shared_ptr<Node>();
     }
