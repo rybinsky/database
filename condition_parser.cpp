@@ -74,12 +74,12 @@ shared_ptr<Node> ParseExpression(It& current, It end, unsigned precedence) {
     shared_ptr<Node> left;
 
     if (current->type == TokenType::PAREN_LEFT) {
-        ++current; // consume '('
+        ++current; // пропустим '('
         left = ParseExpression(current, end, 0u);
         if (current == end || current->type != TokenType::PAREN_RIGHT) {
             throw logic_error("Missing right paren");
         }
-        ++current; // consume ')'
+        ++current; // пропустим ')'
     }
     else {
         left = ParseComparison(current, end);
@@ -101,7 +101,7 @@ shared_ptr<Node> ParseExpression(It& current, It end, unsigned precedence) {
             break;
         }
 
-        ++current; // consume op
+        ++current; // пропустим саму операцию
 
         left = make_shared<LogicalOperationNode>(
             logical_operation, left, ParseExpression(current, end, current_precedence)
