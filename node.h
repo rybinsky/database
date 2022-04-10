@@ -45,17 +45,17 @@ bool Comp(const Comparison& op, const T& a, const T& b) {
 	return 0;
 }
 
-class Node {
+class Node { // базовый класс звено
 public:
 	virtual bool Evaluate(const Date& d, const string& ev) = 0;
 };
 
-class EmptyNode :public Node {
+class EmptyNode :public Node { // пустое звено
 public:
 	bool Evaluate(const Date& d, const string& ev);
 };
 
-class DateComparisonNode :public Node {
+class DateComparisonNode :public Node { // звено сравнения дат
 public:
 	DateComparisonNode(const Comparison& op, const Date& d);
 
@@ -66,7 +66,7 @@ private:
 	Date d_;
 };
 
-class EventComparisonNode :public Node {
+class EventComparisonNode :public Node { // звено сравнения событий
 public:
 	EventComparisonNode(const Comparison& op, const string& ev);
 
@@ -78,7 +78,7 @@ private:
 
 };
 
-class LogicalOperationNode :public Node {
+class LogicalOperationNode :public Node { // логическое звено
 public:
 	LogicalOperationNode(const LogicalOperation& op, const shared_ptr<Node>& left,
 		const shared_ptr<Node>& right);
