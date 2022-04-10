@@ -13,10 +13,10 @@ using namespace std;
 
 class Database {
 public:
-	void Add(const Date& date, const string& event);
+	void Add(const Date& date, const string& event); // добавление события
 
 	template <typename Predicate>
-	vector<string> FindIf(Predicate predicate) const {
+	vector<string> FindIf(Predicate predicate) const { // найти по условию и вернуть вектор событий
 		vector<string> res;
 		for (const auto& date : db_) {
 			for (const auto& event : date.second) {
@@ -29,7 +29,7 @@ public:
 	}
 
 	template <typename Predicate>
-	int RemoveIf(Predicate predicate) {
+	int RemoveIf(Predicate predicate) { // удалить по условию и вернуть сколько удалилось
 		int count = 0;
 		vector<Date> del_ev;
 		for (auto it = db_.begin(); it != db_.end(); it++) {
@@ -57,13 +57,13 @@ public:
 		return count;
 	}
 
-	pair<Date, string> Last(Date d) const;
+	pair<Date, string> Last(Date d) const; // последние событие до определенной даты
 
-	map<Date, vector<string>> Base() const;
+	map<Date, vector<string>> Base() const; // вернуть нашу бабу данных
 
-	void Print(ostream& out) const;
+	void Print(ostream& out) const; // распечатать базу данных
 
 private:
-	map<Date, vector<string>> db_;
-	map<Date, set<string>> events;
+	map<Date, vector<string>> db_; // тут храним события в порядке добавления
+	map<Date, set<string>> events; // это чтобы быстро проверять есть ли оперделенное событие в определенную дату
 };
