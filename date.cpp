@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Date::Date(int a, int b, int c) {
+Date::Date(int a, int b, int c) { // конструктор + проверка валидности
 	year = a;
 
 	if (b <= 0 || b >= 13) {
@@ -25,7 +25,7 @@ int Date::GetDay() const {
 	return day;
 };
 
-string Date::GetDate() const {
+string Date::GetDate() const { // получить дату в формате строки (год может быть и отрицательным)
 	stringstream s;
 	s << setfill('0');
 	if (year < 0) {
@@ -46,7 +46,7 @@ ostream& operator<<(ostream& out, const Date& d) {
 	return out;
 }
 
-Date ParseDate(istream& in) {
+Date ParseDate(istream& in) { // считать дату из потока и проверить корректность
 
 	int y, m, d;
 	bool f = 1;
@@ -65,7 +65,7 @@ Date ParseDate(istream& in) {
 		throw invalid_argument("Wrong date format");
 	}
 }
-
+// определение операторов
 bool operator<(const Date& lhs, const Date& rhs) {
 	auto lhs_ = make_tuple(lhs.GetYear(), lhs.GetMonth(), lhs.GetDay());
 	auto rhs_ = make_tuple(rhs.GetYear(), rhs.GetMonth(), rhs.GetDay());
